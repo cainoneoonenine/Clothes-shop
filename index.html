@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMBER LANE | Seasonal Wardrobe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" aria-label="Main navigation">
+    <a class="brand" href="#random">
+      <span class="brand-mark">EL</span>
+      <span>EMBER LANE</span>
+    </a>
+    <nav class="season-nav" aria-label="Season navigation">
+      <a href="#spring">Spring</a>
+      <a href="#summer">Summer</a>
+      <a href="#autumn">Autumn</a>
+      <a href="#winter">Winter</a>
+    </nav>
+    <button class="bag-button" type="button" aria-label="Shopping bag" id="bagButton">
+      <span>Bag</span>
+      <strong id="bagCount">0</strong>
+    </button>
+  </header>
+
+  <main>
+    <section class="random-showcase panel" id="random">
+      <div class="random-copy">
+        <p class="eyebrow">DRESS-UP LOOKBOOK / MODEL STYLING</p>
+        <h1>Four Seasons Wardrobe</h1>
+      </div>
+
+      <div class="hero-carousel" aria-label="Dress-up clothing carousel">
+        <button class="hero-arrow hero-arrow-left" type="button" id="heroPrev" aria-label="Previous lookbook page"></button>
+        <div class="hero-closet" aria-live="polite">
+          <div class="hero-track" id="heroTrack"></div>
+        </div>
+        <button class="hero-arrow hero-arrow-right" type="button" id="heroNext" aria-label="Next lookbook page"></button>
+        <div class="hero-slider" aria-hidden="true">
+          <span id="heroSliderThumb"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-section spring" id="spring" aria-labelledby="spring-title">
+      <div class="section-heading">
+        <p class="eyebrow">SPRING EDIT / LIGHT BLOOM</p>
+        <h2 id="spring-title">春季单品</h2>
+      </div>
+      <div class="product-grid" data-season="Spring"></div>
+    </section>
+
+    <section class="season-section summer" id="summer" aria-labelledby="summer-title">
+      <div class="section-heading">
+        <p class="eyebrow">SUMMER EDIT / EASY BREEZE</p>
+        <h2 id="summer-title">夏季单品</h2>
+      </div>
+      <div class="product-grid" data-season="Summer"></div>
+    </section>
+
+    <section class="season-section autumn" id="autumn" aria-labelledby="autumn-title">
+      <div class="section-heading">
+        <p class="eyebrow">AUTUMN EDIT / AMBER TONE</p>
+        <h2 id="autumn-title">秋季单品</h2>
+      </div>
+      <div class="product-grid" data-season="Autumn"></div>
+    </section>
+
+    <section class="season-section winter" id="winter" aria-labelledby="winter-title">
+      <div class="section-heading">
+        <p class="eyebrow">WINTER EDIT / COZY SHAPE</p>
+        <h2 id="winter-title">冬季单品</h2>
+      </div>
+      <div class="product-grid" data-season="Winter"></div>
+    </section>
+  </main>
+
+  <div class="look-modal" id="lookModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Close outfit detail" data-close-modal>×</button>
+      <div class="model-placeholder">
+        <img id="modalModelImage" src="" alt="">
+      </div>
+      <div class="modal-copy">
+        <p class="eyebrow" id="modalSeason">SEASON LOOK</p>
+        <h2 id="modalTitle">Model Styling</h2>
+        <div class="modal-ornaments" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="modal-price-row">
+          <strong id="modalPrice">¥368</strong>
+          <i aria-hidden="true"></i>
+        </div>
+        <div class="purchase-options" aria-label="Purchase options">
+          <div class="size-options" aria-label="Size">
+            <button type="button" data-size="XS">XS</button>
+            <button type="button" data-size="S">S</button>
+            <button type="button" data-size="M">M</button>
+            <button type="button" data-size="L">L</button>
+          </div>
+          <div class="modal-quantity" aria-label="Quantity">
+            <button type="button" id="modalQtyMinus" aria-label="Decrease quantity">−</button>
+            <strong id="modalQtyValue">0</strong>
+            <button type="button" id="modalQtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <div class="style-tags" id="modalTags"></div>
+        <button class="primary-button" type="button" id="modalAddButton" disabled>请选择尺码和数量</button>
+      </div>
+    </section>
+  </div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-backdrop" data-close-cart></div>
+    <section class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <header class="cart-header">
+        <div>
+          <p class="eyebrow">SHOPPING BAG</p>
+          <h2 id="cartTitle">购物袋</h2>
+        </div>
+        <button class="cart-close" type="button" aria-label="Close shopping bag" data-close-cart>×</button>
+      </header>
+      <div class="cart-list" id="cartList"></div>
+      <div class="cart-empty" id="cartEmpty">购物袋还是空的</div>
+      <footer class="cart-footer">
+        <div class="cart-total-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">¥0</strong>
+        </div>
+        <button class="clear-cart-button" type="button" id="clearCartButton" disabled>清空购物车</button>
+        <button class="checkout-button" type="button">结算 Checkout</button>
+      </footer>
+    </section>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Added to bag</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Build outputs and generated caches
+dist/
+build/
+out/
+coverage/
+.vite/
+.parcel-cache/
+.cache/
+.tmp/
+tmp/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Codex/local workspace metadata
+.codex/
+
+# Project reference material not used by the app
+video-reference-frame.png
